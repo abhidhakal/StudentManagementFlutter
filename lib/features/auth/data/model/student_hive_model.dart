@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:student_management/app/constant/hive/hive_table_constant.dart';
 import 'package:student_management/features/auth/domain/entity/student_entity.dart';
 import 'package:student_management/features/batch/data/model/batch_hive_model.dart';
@@ -62,7 +62,7 @@ class StudentHiveModel extends Equatable {
       image: entity.image,
       phone: entity.phone,
       batch: BatchHiveModel.fromEntity(entity.batch),
-      courses: CourseHiveModel.fromEntityList(entity.courses),
+      courses: CourseHiveModel.fromEntityList(entity.course),
       username: entity.username,
       password: entity.password,
     );
@@ -77,7 +77,7 @@ class StudentHiveModel extends Equatable {
       image: image,
       phone: phone,
       batch: batch.toEntity(),
-      courses: CourseHiveModel.toEntityList(courses),
+      course: CourseHiveModel.toEntityList(courses),
       username: username,
       password: password,
     );
