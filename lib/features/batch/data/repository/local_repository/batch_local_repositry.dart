@@ -4,39 +4,38 @@ import 'package:student_management/features/batch/data/data_source/local_datasou
 import 'package:student_management/features/batch/domain/entity/batch_entity.dart';
 import 'package:student_management/features/batch/domain/repository/batch_repository.dart';
 
-class BatchLocalRepositry implements IBatchRepository {
-  final BatchLocalDataSource _batchLocalDataSource;
+class BatchLocalRepository implements IBatchRepository {
+  final BatchLocalDatasource batchLocalDatasource;
 
-  BatchLocalRepositry({required BatchLocalDataSource batchLocalDataSoure})
-    : _batchLocalDataSource = batchLocalDataSoure;
+  BatchLocalRepository({required this.batchLocalDatasource});
 
   @override
-  Future<Either<Failure, void>> createBatch(BatchEntity batch) async {
+  Future<Either<Failure, void>> addBatch(BatchEntity batch) async {
     try {
-      _batchLocalDataSource.createBatch(batch);
-      return Right(null);
+      await batchLocalDatasource.addBatch(batch);
+      return const Right(null);
     } catch (e) {
-      return Left(LocalDataBaseFailure(message: e.toString()));
+      return Left(LocalDataBaseFailure(message: 'Failed to add batch'));
     }
   }
 
   @override
-  Future<Either<Failure, void>> deleteBatch(String id) async {
+  Future<Either<Failure, void>> deleteBatch(String batchId) async {
     try {
-      _batchLocalDataSource.deleteBatch(id);
-      return Right(null);
+      await batchLocalDatasource.deleteBatch(batchId);
+      return const Right(null);
     } catch (e) {
-      return (Left(LocalDataBaseFailure(message: e.toString())));
+      return Left(LocalDataBaseFailure(message: 'Failed to delete batch'));
     }
   }
 
   @override
   Future<Either<Failure, List<BatchEntity>>> getBatches() async {
     try {
-      final batches = await _batchLocalDataSource.getBatches();
+      final batches = await batchLocalDatasource.getBatches();
       return Right(batches);
     } catch (e) {
-      return (Left(LocalDataBaseFailure(message: e.toString())));
+      return Left(LocalDataBaseFailure(message: 'Failed to get batches'));
     }
   }
 }

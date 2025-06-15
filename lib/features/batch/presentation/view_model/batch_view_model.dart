@@ -6,12 +6,12 @@ import 'package:student_management/features/batch/presentation/view_model/batch_
 import 'package:student_management/features/batch/presentation/view_model/batch_state.dart';
 
 class BatchViewModel extends Bloc<BatchEvent, BatchState> {
-  final CreateBatchUseCase _createBatchUseCase;
+  final CreateBatchUsecase _createBatchUseCase;
   final GetallBatchUsecase _getAllBatchUseCase;
   final DeleteBatchUsecase _deleteBatchUsecase;
 
   BatchViewModel({
-    required CreateBatchUseCase createBatchUseCase,
+    required CreateBatchUsecase createBatchUseCase,
     required GetallBatchUsecase getAllBatchUseCase,
     required DeleteBatchUsecase deleteBatchUsecase,
   }) : _createBatchUseCase = createBatchUseCase,

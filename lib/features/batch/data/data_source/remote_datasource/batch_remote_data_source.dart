@@ -13,7 +13,7 @@ class BatchRemoteDatasource implements IBatchDataSource {
     : _apiService = apiService;
 
   @override
-  Future<void> createBatch(BatchEntity batch) async {
+  Future<void> addBatch(BatchEntity batch) async {
     try {
       final batchApiModel = BatchApiModel.fromEntity(batch);
 

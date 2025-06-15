@@ -7,22 +7,24 @@ import 'package:student_management/features/batch/domain/repository/batch_reposi
 
 class CreateBatchParams extends Equatable {
   final String batchName;
+
   const CreateBatchParams({required this.batchName});
 
-  const CreateBatchParams.empty() : batchName = "_empty.string";
+  // empty constructor for initial state
+  const CreateBatchParams.initial() : batchName = '_empty.string';
 
   @override
   List<Object?> get props => [batchName];
 }
 
-class CreateBatchUseCase implements UseCaseWithParams<void, CreateBatchParams> {
+class CreateBatchUsecase implements UseCaseWithParams<void, CreateBatchParams> {
   final IBatchRepository batchRepository;
 
-  CreateBatchUseCase({required this.batchRepository});
+  CreateBatchUsecase({required this.batchRepository});
 
   @override
   Future<Either<Failure, void>> call(CreateBatchParams params) async {
-    return await batchRepository.createBatch(
+    return await batchRepository.addBatch(
       BatchEntity(batchName: params.batchName),
     );
   }

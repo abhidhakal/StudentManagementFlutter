@@ -90,16 +90,16 @@ Future _initCourseModule() async {
 Future<void> _initBatchModule() async {
   // Data Source
   serviceLocator.registerFactory(
-    () => BatchLocalDataSource(hiveService: serviceLocator<HiveService>()),
+    () => BatchLocalDatasource(hiveService: serviceLocator<HiveService>()),
   );
   serviceLocator.registerFactory(
     () => BatchRemoteDatasource(apiService: serviceLocator<ApiService>()),
   );
 
   // Repository
-  serviceLocator.registerFactory<BatchLocalRepositry>(
-    () => BatchLocalRepositry(
-      batchLocalDataSoure: serviceLocator<BatchLocalDataSource>(),
+  serviceLocator.registerFactory<BatchLocalRepository>(
+    () => BatchLocalRepository(
+      batchLocalDatasource: serviceLocator<BatchLocalDatasource>(),
     ),
   );
 
@@ -115,7 +115,7 @@ Future<void> _initBatchModule() async {
     ),
   );
   serviceLocator.registerFactory(
-    () => CreateBatchUseCase(
+    () => CreateBatchUsecase(
       batchRepository: serviceLocator<BatchRemoteRepository>(),
     ),
   );
@@ -128,7 +128,7 @@ Future<void> _initBatchModule() async {
   serviceLocator.registerLazySingleton(
     () => BatchViewModel(
       getAllBatchUseCase: serviceLocator<GetallBatchUsecase>(),
-      createBatchUseCase: serviceLocator<CreateBatchUseCase>(),
+      createBatchUseCase: serviceLocator<CreateBatchUsecase>(),
       deleteBatchUsecase: serviceLocator<DeleteBatchUsecase>(),
     ),
   );

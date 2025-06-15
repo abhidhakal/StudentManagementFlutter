@@ -11,9 +11,9 @@ class BatchRemoteRepository implements IBatchRepository {
     : _batchRemoteDatasource = batchRemoteDatasource;
 
   @override
-  Future<Either<Failure, void>> createBatch(BatchEntity batch) async {
+  Future<Either<Failure, void>> addBatch(BatchEntity batch) async {
     try {
-      await _batchRemoteDatasource.createBatch(batch);
+      await _batchRemoteDatasource.addBatch(batch);
       return const Right(null);
     } catch (e) {
       return Left(RemoteDataBaseFailure(message: e.toString()));
