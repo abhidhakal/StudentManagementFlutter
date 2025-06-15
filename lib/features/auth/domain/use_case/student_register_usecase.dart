@@ -66,7 +66,7 @@ class StudentRegisterUsecase
       lName: params.lname,
       phone: params.phone,
       batch: params.batch,
-      course: params.courses,
+      courses: params.courses,
       username: params.username,
       password: params.password,
       image: params.image,

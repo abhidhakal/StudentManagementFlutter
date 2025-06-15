@@ -4,12 +4,12 @@ import 'package:student_management/features/auth/domain/entity/student_entity.da
 import 'package:student_management/features/batch/data/model/batch_api_model.dart';
 import 'package:student_management/features/course/data/model/course_api_model.dart';
 
-part 'auth_api_model.g.dart';
+part 'student_api_model.g.dart';
 
 @JsonSerializable()
-class AuthApiModel extends Equatable {
+class StudentApiModel extends Equatable {
   @JsonKey(name: '_id')
-  final String? id;
+  final String? studentId;
   final String fname;
   final String lname;
   final String? image;
@@ -19,8 +19,8 @@ class AuthApiModel extends Equatable {
   final String username;
   final String? password;
 
-  const AuthApiModel({
-    this.id,
+  const StudentApiModel({
+    this.studentId,
     required this.fname,
     required this.lname,
     required this.image,
@@ -31,41 +31,51 @@ class AuthApiModel extends Equatable {
     required this.password,
   });
 
-  factory AuthApiModel.fromJson(Map<String, dynamic> json) =>
-      _$AuthApiModelFromJson(json);
+  factory StudentApiModel.fromJson(Map<String, dynamic> json) =>
+      _$StudentApiModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AuthApiModelToJson(this);
+  Map<String, dynamic> toJson() => _$StudentApiModelToJson(this);
 
   // To Entity
   StudentEntity toEntity() {
     return StudentEntity(
-      userId: id,
+      studentId: studentId,
       fName: fname,
       lName: lname,
       image: image,
       phone: phone,
       batch: batch.toEntity(),
-      course: course.map((e) => e.toEntity()).toList(),
+      courses: course.map((e) => e.toEntity()).toList(),
       username: username,
       password: password ?? '',
     );
   }
 
   // From Entity
-  factory AuthApiModel.fromEntity(StudentEntity entity) {
-    return AuthApiModel(
+  factory StudentApiModel.fromEntity(StudentEntity entity) {
+    final student = StudentApiModel(
       fname: entity.fName,
       lname: entity.lName,
       image: entity.image,
       phone: entity.phone,
       batch: BatchApiModel.fromEntity(entity.batch),
-      course: entity.course.map((e) => CourseApiModel.fromEntity(e)).toList(),
+      course: entity.courses.map((e) => CourseApiModel.fromEntity(e)).toList(),
       username: entity.username,
       password: entity.password,
     );
+    return student;
   }
 
   @override
-  List<Object?> get props =>
-      [id, fname, lname, image, phone, batch, course, username, password];
+  List<Object?> get props => [
+    studentId,
+    fname,
+    lname,
+    image,
+    phone,
+    batch,
+    course,
+    username,
+    password,
+  ];
 }

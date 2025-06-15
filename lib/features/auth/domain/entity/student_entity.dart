@@ -3,37 +3,37 @@ import 'package:student_management/features/batch/domain/entity/batch_entity.dar
 import 'package:student_management/features/course/domain/entity/course_entity.dart';
 
 class StudentEntity extends Equatable {
-  final String? userId;
+  final String? studentId;
   final String fName;
   final String lName;
   final String? image;
   final String phone;
   final BatchEntity batch;
-  final List<CourseEntity> course;
+  final List<CourseEntity> courses;
   final String username;
   final String password;
 
   const StudentEntity({
-    this.userId,
+    this.studentId,
     required this.fName,
     required this.lName,
     this.image,
     required this.phone,
     required this.batch,
-    required this.course,
+    required this.courses,
     required this.username,
     required this.password,
   });
 
   @override
   List<Object?> get props => [
-    userId,
+    studentId,
     fName,
     lName,
     image,
     batch,
     phone,
-    course,
+    courses,
     username,
     password,
   ];

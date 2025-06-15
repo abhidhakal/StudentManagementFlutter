@@ -56,13 +56,13 @@ class StudentHiveModel extends Equatable {
   // From Entity
   factory StudentHiveModel.fromEntity(StudentEntity entity) {
     return StudentHiveModel(
-      studentId: entity.userId,
+      studentId: entity.studentId,
       fName: entity.fName,
       lName: entity.lName,
       image: entity.image,
       phone: entity.phone,
       batch: BatchHiveModel.fromEntity(entity.batch),
-      courses: CourseHiveModel.fromEntityList(entity.course),
+      courses: CourseHiveModel.fromEntityList(entity.courses),
       username: entity.username,
       password: entity.password,
     );
@@ -71,13 +71,13 @@ class StudentHiveModel extends Equatable {
   // To Entity
   StudentEntity toEntity() {
     return StudentEntity(
-      userId: studentId,
+      studentId: studentId,
       fName: fName,
       lName: lName,
       image: image,
       phone: phone,
       batch: batch.toEntity(),
-      course: CourseHiveModel.toEntityList(courses),
+      courses: CourseHiveModel.toEntityList(courses),
       username: username,
       password: password,
     );

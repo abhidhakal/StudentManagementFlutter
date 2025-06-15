@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_api_model.dart';
+part of 'student_api_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AuthApiModel _$AuthApiModelFromJson(Map<String, dynamic> json) => AuthApiModel(
-      id: json['_id'] as String?,
+StudentApiModel _$StudentApiModelFromJson(Map<String, dynamic> json) =>
+    StudentApiModel(
+      studentId: json['_id'] as String?,
       fname: json['fname'] as String,
       lname: json['lname'] as String,
       image: json['image'] as String?,
@@ -20,9 +21,9 @@ AuthApiModel _$AuthApiModelFromJson(Map<String, dynamic> json) => AuthApiModel(
       password: json['password'] as String?,
     );
 
-Map<String, dynamic> _$AuthApiModelToJson(AuthApiModel instance) =>
+Map<String, dynamic> _$StudentApiModelToJson(StudentApiModel instance) =>
     <String, dynamic>{
-      '_id': instance.id,
+      '_id': instance.studentId,
       'fname': instance.fname,
       'lname': instance.lname,
       'image': instance.image,
